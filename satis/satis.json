@@ -1,0 +1,23 @@
+{
+    "name": "nix/satis",
+    "homepage": "http://localhost:9999",
+    "archive":{
+        "directory": "dist",
+        "format": "tar",
+        "skip-dev": false
+     },
+    "repositories": [{
+        "packagist.org": false
+    }, {
+        "type": "vcs",
+        "url": "packages/PHPMailer"
+    }, {
+        "type": "vcs",
+        "url": "packages/php-lang-correct"
+
+    }],
+    "require": {
+        "phpmailer/phpmailer": "6.2.0",
+        "rin-nas/php-lang-correct": "*"
+    }
+}
