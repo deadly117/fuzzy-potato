@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+  labels:
+    component: web
+spec:
+  containers:
+  - name: test-php
+    image: deadly117/test-php
+    volumeMounts:
+      - mountPath: /usr/app
+        name: app
+      - mountPath: /sock
+        name: sock
+  - name: test-nginx
+    image: deadly117/test-nginx
+    ports:
+        - containerPort: 80
+    volumeMounts:
+      - mountPath: /usr/app
+        name: app
+      - mountPath: /sock
+        name: sock
+  initContainers:
+    - name: test-code
+      image: deadly117/test-code
+      volumeMounts:
+        - mountPath: /usr/app
+          name: app
+  volumes:
+      - name: sock
+        emptyDir: {}
+      - name: app
+        emptyDir: {}
+              

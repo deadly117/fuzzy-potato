@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  nginx:
+    build:
+      context: nginx
+    volumes:
+      - "sock:/sock"
+      - "app:/usr/app"
+    ports:
+      - "8888:80"
+    depends_on:
+      - php
+  php:
+    build:
+      context: php
+    volumes:
+      - "sock:/sock"
+      - "app:/usr/app"
+    depends_on:
+      - code
+  code:
+    build:
+      context: code
+    volumes:
+      - "app:/usr/app"
+
+
+volumes:
+    sock:
+    app:
